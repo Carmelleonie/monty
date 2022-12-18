@@ -1,12 +1,12 @@
-#include "monty"
+#include "monty.h"
 
 /**
-*f_pall - display the stack
+*pall - display the stack
 *@head: the head of the stack
 *@num: the data
 *Return: Nothing
 */
-void f_pall(stack_t **head, unsigned int num)
+void pall(stack_t **head, unsigned int num)
 {
 	stack_t *new_node;
 
