@@ -11,3 +11,9 @@ void ascii_error(unsigned int line_number)
 	fprintf(stderr, "L%u: can't pchar, value out of range\n", line_number);
 	exit(EXIT_FAILURE);
 }
+
+void not_an _int_error(unsigned int line_number);
+{
+	fprintf(stderr, "L%u: usage: push integer", line_number);
+	exit(EXIT_FAILURE);
+}

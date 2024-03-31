@@ -9,16 +9,43 @@ void push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new_node = *stack, *top = NULL;
 
-	new_node->n = n;
-
-	if (is_empty())
+	if (new_node == NULL)
 	{
 		is_empty_error();
 		return;
 	}
-	new_node-prev = top;
-	top->next = new_node;
+	for (int i = 0; val[1][i] != NULL; i++)
+	{
+		if (val[1][0] == '-')
+			continue;
+		if (val[1][i] < '0' || val[1][i] > '9')
+		{
+			not_an_int_error(line_number);
+			return;
+		}
+	}
+	new_node->n = atoi(val);
+	if (checker(*stack) == STACK)
+	{
+		top = (*stack)->next;
+		new_node->prev = (*stack);
+		new_node->next = top;
+
+		if (top == NULL)
+		{
+			top->prev = new_node;
+		}
+		(*stack)->next = new_node;
+	}
+	top = (*stack);
+
+	while (top->next != NULL)
+	{
+		top = top->next;
+	}
+	new_node->prev = top;
 	new_node->next = NULL;
+	top->next = new_node;
 }
 
 /**
@@ -39,6 +66,7 @@ void pall(stack_t **stack, unsigned int line_number)
 		printf("%d\n", top->n);
 		top = top->next;
 	}
+	free(top);
 }
 
 /**
@@ -50,8 +78,9 @@ void pint(stack_t **stack, unsigned int line_number)
 {
 	stack_t *top = *stack;
 
-	if (!(is_empty()))
+	if (is_empty())
 	{
+		pint_error(line_number);
 		return;
 	}
 	printf("%d\n", top->n);
@@ -68,6 +97,7 @@ void pop(stack_t **stack, unsigned int line_number)
 
 	if (is_empty())
 	{
+		pop_error(line_number);
 		return;
 	}
 	top->prev->next = NULL;
@@ -87,8 +117,9 @@ void swap(stack_t **stack, unsigned int line_number)
 	if (is_empty((*stack) || (*stack)->next == NULL)
 	{
 		swap_error(line_number);
+		return;
 	}
 	top_value = (*stack)->n;
-	(*stack) = (*stack)->next->n;
+	(*stack)->n = (*stack)->next->n;
 	(*stack)->next->n = top_value;
 }

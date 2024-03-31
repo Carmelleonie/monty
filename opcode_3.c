@@ -7,8 +7,8 @@
 */
 void nop(stack_t **stack, unsigned int line_number)
 {
-	void(*stack);
-	void(line_number);
+	UNUSED(*stack);
+	UNUSED(line_number);
 }
 
 /**
@@ -59,7 +59,25 @@ void pstr(stack_t **stack, unsigned int line_number)
 *@line_number: File line execution
 *Return: Nothing
 */
-void rotl(stack_t **stack, unsigned int line_number);
+void rotl(stack_t **stack, unsigned int line_number)
+{
+	stack_t *top = *stack;
+	UNUSED(line_number);
+
+	if (!stack || !*stack || !(*stack)->next)
+	{
+		return;
+	}
+	(*stack)->next->prev = NULL;
+	while (top->next)
+	{
+		top = top->next;
+	}
+	top->next = *stack;
+	(*stack) = (*stack)->next;
+	top->next->next = NULL;
+	top->next->prev = top;
+}
 
 /**
 *rotr -  rotates the stack to the bottom.
@@ -67,4 +85,25 @@ void rotl(stack_t **stack, unsigned int line_number);
 *@line_number: File line execution
 *Return: Nothing
 */
-void rotr(stack_t **stack, unsigned int line_number);
+void rotr(stack_t **stack, unsigned int line_number)
+{
+
+	stack_t *top;
+	UNUSED(line_number);
+
+	if (!stack || !*stack || !(*stack)->next)
+	{
+		return;
+	}
+	top = *stack;
+	while (top->next)
+	{
+		top = top->next;
+	}
+	top->next = *stack;
+	top->prev->next = NULL;
+	top->prev = NULL;
+
+	(*stack)->prev = top;
+	*stack = top;
+}

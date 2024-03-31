@@ -1,49 +1,30 @@
 #include "monty.h"
 
-/**
-*_stack - sets the format of the data to a stack (LIFO)
-*@stack: The pointer to the stack
-*@line_number: File line execution
-*Return: Nothing
-*/
-void _stack(stack_t **stack, unsigned int line_number)
+int checker(stack_t **stack)
 {
-	stack_t *top = *stack;
-	(void) line_number;
-
-	if (!stack || !*stack || !(*stack)->next)
-		return;
-	(*stack)->next->prev = NULL;
-	while (top->next)
-		top = top->next;
-	top->next = *stack;
-	(*stack) = (*stack)->next;
-	top->next->next = NULL;
-	top->next->prev = top;
+	if ((*stack)->n == STACK)
+	{
+		return (STACK);
+	}
+	else if ((stack)->n == QUEUE)
+	{
+		return (QUEUE);
+	}
+	return (NO_STACK_QUEUE);
 }
-/**
-*_queue -  sets the format of the data to a queue (FIFO)
-*@stack: The pointer to the queue
-*@line_number: File line execution
-*Return: Nothing
-*/
-void _queue(stack_t **stack, unsigned int line_number)
+
+void stack(stack_t **stack, unsigned int line_number)
 {
-	stack_t *top;
-	(void) line_number;
+	(*stack)->n = STACK;
+	UNUSED(line_number);
+}
 
-	if (!stack || !*stack || !(*stack)->next)
-		return;
 
-	top = *stack;
-	while (top->next)
-		top = top->next;
 
-	top->next = *stack;
-	top->prev->next = NULL;
-	top->prev = NULL;
 
-	(*stack)->prev = top;
-	*stack = top;
 
+void queue(stack_t **stack, unsigned int line_number)
+{
+	(*stack)->n = QUEUE;
+	UNUSED(line_number);
 }

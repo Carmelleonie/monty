@@ -5,6 +5,13 @@
 #include <string.h>
 #include <unistd.h>
 #include <ctype.h>
+
+#define STACK 0
+#define QUEUE 1
+#define NO_STACK_QUEUE 2
+#define UNUSED(x) (void)(x)
+
+extern char **val;
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -47,6 +54,8 @@ void is_empty(stack_t **stack)
 	}
 	return;
 }
+
+void (*instructions(char *opcode))(stack_t **, unsigned int);
 /*Stack's opereation in opcode_1.c*/
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
@@ -60,15 +69,15 @@ void div(stack_t **stack, unsigned int line_number);
 void mul(stack_t **stack, unsigned int line_number);
 void mod(stack_t **stack, unsigned int line_number);
 
-void _stack(stack_t **stack, unsigned int line_number);
-void _queue(stack_t **stack, unsigned int line_number);
-
+/* Opcode_3.c */
 void nop(stack_t **stack, unsigned int line_number);
 void pchar(stack_t **stack, unsigned int line_number);
 void pstr(stack_t **stack, unsigned int line_number);
 void rotl(stack_t **stack, unsigned int line_number);
 void rotr(stack_t **stack, unsigned int line_number);
 
+/* Opcode_4.c */
+int checker(stack_t **stack);
 void stack(stack_t **stack, unsigned int line_number);
 void queue(stack_t **stack, unsigned int line_number);
 /*Errors's code*/
@@ -77,6 +86,7 @@ void openfile_sec_error(char *file);
 void invalide_instruction_error(char *opcode, unsigned int line_number);
 void malloc_fourth_error(void);
 void is_empty_error(unsigned int line_number);
+void not_an_int_error(unsigned int line_number);
 
 /* Stack operation's errors*/
 void push_error(unsigned int line_number);

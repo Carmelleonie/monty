@@ -64,6 +64,6 @@ void malloc_fourth_error(void)
 */
 void is_empty_error(unsigned int line_number)
 {
-	fprintf(stderr, "L%u: can't pchar, stack empty\n", line_number);
+	fprintf(stderr, "L%u: can't pint, stack empty\n", line_number);
 	exit(EXIT_FAILURE);
 }
