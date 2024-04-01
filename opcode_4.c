@@ -1,5 +1,12 @@
 #include "monty.h"
 
+/**
+*checker - check whether it is stack or queue mode 
+*@stack : double linked list
+*Return : STACK = 0 if stack mode
+*QUEUE = 0 if queue mode
+*else 2
+*/
 int checker(stack_t **stack)
 {
 	if ((*stack)->n == STACK)
@@ -13,6 +20,12 @@ int checker(stack_t **stack)
 	return (NO_STACK_QUEUE);
 }
 
+/**
+*
+*
+*
+*
+*/
 void stack(stack_t **stack, unsigned int line_number)
 {
 	(*stack)->n = STACK;

@@ -55,7 +55,12 @@ void is_empty(stack_t **stack)
 	return;
 }
 
+/* Monty_helper.c */
+int start(stack_t **stack);
+void free_all(stack_t **stack);
 void (*instructions(char *opcode))(stack_t **, unsigned int);
+unsigned int _strlen(void);
+int executor(FILE *stream);
 /*Stack's opereation in opcode_1.c*/
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
@@ -83,7 +88,7 @@ void queue(stack_t **stack, unsigned int line_number);
 /*Errors's code*/
 void first_error(void);
 void openfile_sec_error(char *file);
-void invalide_instruction_error(char *opcode, unsigned int line_number);
+void invalide_instruction(char *opcode, unsigned int line_number);
 void malloc_fourth_error(void);
 void is_empty_error(unsigned int line_number);
 void not_an_int_error(unsigned int line_number);

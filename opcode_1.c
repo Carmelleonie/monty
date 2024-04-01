@@ -12,6 +12,7 @@ void push(stack_t **stack, unsigned int line_number)
 	if (new_node == NULL)
 	{
 		is_empty_error();
+		malloc_fourth_error();
 		return;
 	}
 	for (int i = 0; val[1][i] != NULL; i++)

@@ -38,7 +38,7 @@ void openfile_sec_error(char *file)
 *@line_number: File line execution
 *Return: Nothing
 */
-void invalide_instruction_error(char *opcode, unsigned int line_number)
+void invalide_instruction(char *opcode, unsigned int line_number)
 {
 	fprintf(stderr, "L%u: unknown instruction %s\n",opcode);
 	exit(EXIT_FAILURE);
